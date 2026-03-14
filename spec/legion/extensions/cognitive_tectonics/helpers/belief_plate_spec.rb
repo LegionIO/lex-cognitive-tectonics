@@ -75,7 +75,7 @@ RSpec.describe Legion::Extensions::CognitiveTectonics::Helpers::BeliefPlate do
       expect(drifting_plate.position[:y]).to be_within(1e-9).of(0.02)
     end
 
-    it 'scales by dt' do
+    it 'scales by delta_t' do
       drifting_plate.drift!(2.0)
       expect(drifting_plate.position[:x]).to be_within(1e-9).of(0.02)
     end

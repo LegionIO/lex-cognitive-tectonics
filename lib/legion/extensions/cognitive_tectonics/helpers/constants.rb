@@ -18,11 +18,11 @@ module Legion
           PLATE_STATES = %i[active subducted dormant].freeze
 
           MAGNITUDE_LABELS = {
-            (0.0...1.0) => :micro,
-            (1.0...2.0) => :minor,
-            (2.0...3.0) => :light,
-            (3.0...4.0) => :moderate,
-            (4.0...5.0) => :strong,
+            (0.0...1.0)             => :micro,
+            (1.0...2.0)             => :minor,
+            (2.0...3.0)             => :light,
+            (3.0...4.0)             => :moderate,
+            (4.0...5.0)             => :strong,
             (5.0...Float::INFINITY) => :great
           }.freeze
 

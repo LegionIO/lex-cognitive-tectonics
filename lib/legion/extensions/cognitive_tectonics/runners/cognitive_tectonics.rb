@@ -24,8 +24,8 @@ module Legion
             { success: false, error: e.message }
           end
 
-          def drift_tick(dt: 1.0, engine: nil, **)
-            tectonic_engine(engine).drift_tick!(dt)
+          def drift_tick(delta_t: 1.0, engine: nil, **)
+            tectonic_engine(engine).drift_tick!(delta_t)
           rescue ArgumentError => e
             { success: false, error: e.message }
           end
@@ -62,7 +62,7 @@ module Legion
           private
 
           def tectonic_engine(engine)
-            engine || @default_engine ||= Helpers::TectonicEngine.new
+            engine || @tectonic_engine ||= Helpers::TectonicEngine.new
           end
         end
       end

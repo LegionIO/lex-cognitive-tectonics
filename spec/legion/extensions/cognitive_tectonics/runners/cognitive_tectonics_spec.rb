@@ -65,8 +65,8 @@ RSpec.describe Legion::Extensions::CognitiveTectonics::Runners::CognitiveTectoni
       expect(result).to have_key(:plates_moved)
     end
 
-    it 'accepts custom dt' do
-      result = runner.drift_tick(dt: 0.5, engine: engine)
+    it 'accepts custom delta_t' do
+      result = runner.drift_tick(delta_t: 0.5, engine: engine)
       expect(result[:success]).to be(true)
     end
   end

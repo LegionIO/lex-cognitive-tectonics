@@ -18,18 +18,18 @@ module Legion
             @content             = content
             @mass                = mass.clamp(0.0, 1.0)
             @drift_vector        = drift_vector || { x: 0.0, y: 0.0 }
-            @position            = position    || { x: rand(-10.0..10.0).round(10), y: rand(-10.0..10.0).round(10) }
+            @position            = position || { x: rand(-10.0..10.0).round(10), y: rand(-10.0..10.0).round(10) }
             @velocity            = { x: 0.0, y: 0.0 }
             @stress_accumulation = 0.0
             @state               = :active
             @created_at          = Time.now.utc
           end
 
-          def drift!(dt = 1.0)
+          def drift!(delta_t = 1.0)
             return if @state != :active
 
-            @position[:x] = (@position[:x] + @drift_vector.fetch(:x, 0.0) * dt).round(10)
-            @position[:y] = (@position[:y] + @drift_vector.fetch(:y, 0.0) * dt).round(10)
+            @position[:x] = (@position[:x] + (@drift_vector.fetch(:x, 0.0) * delta_t)).round(10)
+            @position[:y] = (@position[:y] + (@drift_vector.fetch(:y, 0.0) * delta_t)).round(10)
           end
 
           def accumulate_stress!(amount)
@@ -37,7 +37,7 @@ module Legion
           end
 
           def release_stress!
-            released           = @stress_accumulation
+            released = @stress_accumulation
             @stress_accumulation = 0.0
             released
           end
@@ -61,7 +61,7 @@ module Legion
           def distance_to(other_plate)
             dx = @position[:x] - other_plate.position[:x]
             dy = @position[:y] - other_plate.position[:y]
-            Math.sqrt(dx**2 + dy**2).round(10)
+            Math.sqrt((dx**2) + (dy**2)).round(10)
           end
 
           def to_h

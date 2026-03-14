@@ -10,7 +10,7 @@ module Legion
 
         def initialize(engine: nil, **)
           @engine          = engine || Helpers::TectonicEngine.new
-          @default_engine  = @engine
+          @tectonic_engine = @engine
         end
       end
     end
